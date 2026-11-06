@@ -67,7 +67,7 @@ export function GameSetupPage() {
           </label>
 
           <div className="mt-3 flex min-w-0 items-stretch overflow-hidden rounded-2xl border-2 border-[var(--border)] bg-[var(--surface)] transition-colors focus-within:border-[var(--primary)]">
-            <span className="display-type flex shrink-0 items-center border-r border-[var(--border)] bg-[var(--surface-muted)] px-3 text-xl font-semibold text-[var(--primary-hover)] sm:px-4">
+            <span className="display-type flex shrink-0 items-center border-r border-[var(--border)] bg-[var(--surface-muted)] px-3 text-xl font-semibold text-black sm:px-4">
               TCA–
             </span>
             <input
