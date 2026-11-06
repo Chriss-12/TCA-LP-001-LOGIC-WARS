@@ -4,5 +4,5 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: "/tca-logic-wars/",
+  base: "/TCA-LP-001-LOGIC-WARS/",
 });
