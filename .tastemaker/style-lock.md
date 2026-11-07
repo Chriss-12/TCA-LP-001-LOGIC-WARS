@@ -41,6 +41,7 @@ The palette comes directly from the TCA chromatic reference supplied by the user
 
 - Question and answers are always separate surfaces.
 - Active game uses one centered white question card and a separate white answer card.
+- Cards use a medium 2 px Azul marino border with no decorative top tab.
 - Primary button uses the primary fill; secondary button uses a white surface and border.
 - A fixed mobile HUD keeps the score on the left and the countdown on the right.
 - The countdown shows only digits and changes from green to yellow to red at the remaining-time thirds.
@@ -50,6 +51,8 @@ The palette comes directly from the TCA chromatic reference supplied by the user
 - Correct and incorrect selections trigger a brief green or red vector-face reaction.
 - Surrender uses an icon-only floating exit button and always requires an explicit yes/no confirmation.
 - Results use a labeled floating exit button plus a separate external TCA social link.
+- Setup and results reuse the same navy-bordered social-network card.
+- Incorrect feedback uses red state copy with the correct result and explanation in Grafito.
 - The page uses one fixed Vino ejecutivo to Azul acero gradient with no particles, grid, dotted overlay, or pointer reaction.
 - The compact upper-left brand mark uses 18 px type and a 32 px diamond signature.
 - TCA identity uses the three-diamond reference supplied by the user as the favicon and as a restrained interface motif.

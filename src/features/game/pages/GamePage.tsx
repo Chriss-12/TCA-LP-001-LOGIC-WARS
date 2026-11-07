@@ -136,14 +136,20 @@ export function GamePage() {
                   animate={{ opacity: 1, y: 0 }}
                   className={`feedback-card ${currentAnswer.isCorrect ? "feedback-card--correct" : "feedback-card--wrong"}`}
                 >
-                  <div className="flex items-center gap-2 font-bold">
-                    {currentAnswer.isCorrect ? <CheckCircle2 className="size-5" aria-hidden="true" /> : <XCircle className="size-5" aria-hidden="true" />}
-                    <span>{currentAnswer.isCorrect ? "¡Respuesta correcta!" : "Esta vez no fue"}</span>
+                  <div className="feedback-heading flex items-start gap-2 font-bold">
+                    {currentAnswer.isCorrect ? <CheckCircle2 className="mt-0.5 size-5 shrink-0" aria-hidden="true" /> : <XCircle className="mt-0.5 size-5 shrink-0" aria-hidden="true" />}
+                    {currentAnswer.isCorrect ? (
+                      <span>¡Respuesta correcta!</span>
+                    ) : (
+                      <span>
+                        La respuesta debería ser:{" "}
+                        <strong className="feedback-result">
+                          {question.correctAnswer}. {question.options[question.correctAnswer]}
+                        </strong>
+                      </span>
+                    )}
                   </div>
-                  {!currentAnswer.isCorrect && (
-                    <p className="mt-2 text-sm">Correcta: <strong>{question.correctAnswer}. {question.options[question.correctAnswer]}</strong></p>
-                  )}
-                  <p className="mt-2 text-sm leading-5 text-[var(--text-muted)]">{question.explanation}</p>
+                  <p className="feedback-explanation mt-2 text-sm leading-5">{question.explanation}</p>
                 </motion.div>
               )}
             </AnimatePresence>

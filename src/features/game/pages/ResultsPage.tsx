@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import confetti from "canvas-confetti";
-import { BarChart3, Check, ChevronDown, Clock3, Code2, ExternalLink, Hash, LogOut, Medal, Minus, Target, X } from "lucide-react";
+import { BarChart3, Check, ChevronDown, Clock3, Code2, Hash, LogOut, Medal, Minus, Target, X } from "lucide-react";
 import { motion } from "motion/react";
 import { Navigate, useNavigate } from "react-router";
 
@@ -9,6 +9,7 @@ import { BrandMark } from "../components/BrandMark";
 import { DifficultyBadge } from "../components/DifficultyBadge";
 import { GameButton } from "../components/GameButton";
 import { GameShell } from "../components/GameShell";
+import { SocialLinkCard } from "../components/SocialLinkCard";
 import { CATEGORY_LABELS, DIFFICULTY_LABELS, DIFFICULTY_TOTALS, MAX_SCORE } from "../constants/game.constants";
 import { useGameStore } from "../store/game.store";
 import { countResults, formatElapsedTime } from "../utils/gameResults";
@@ -66,7 +67,7 @@ export function ResultsPage() {
         <h1 className="editorial-type mt-2 text-4xl leading-[1.02] font-medium tracking-[-0.03em] sm:text-5xl">{resultMessage.title}</h1>
         <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-[var(--text-muted)]">{resultMessage.body}</p>
 
-        <div className="mx-auto mt-6 max-w-sm rounded-3xl border border-[var(--color-5)] bg-[var(--surface)] px-5 py-5">
+        <div className="mx-auto mt-6 max-w-sm rounded-3xl border-2 border-[var(--card-border)] bg-[var(--surface)] px-5 py-5">
           <p className="text-xs font-bold tracking-wider text-[var(--text-muted)] uppercase">Puntaje total</p>
           <p className="display-type mt-1 text-7xl leading-none font-semibold tracking-[-0.04em]">
             {score}<span className="ml-2 text-2xl text-[var(--text-muted)]">/{MAX_SCORE}</span>
@@ -110,7 +111,7 @@ export function ResultsPage() {
               const answer = answers.find((item) => item.questionId === question.id);
               const selectedLabel = answer?.selectedAnswer ? `${answer.selectedAnswer}. ${question.options[answer.selectedAnswer]}` : "Omitida";
               return (
-                <article key={question.id} className="rounded-2xl border border-[var(--color-4)] bg-[var(--surface)] p-4">
+                <article key={question.id} className="rounded-2xl border-2 border-[var(--card-border)] bg-[var(--surface)] p-4">
                   <div className="flex items-center justify-between gap-3">
                     <p className="display-type text-sm font-medium text-[var(--text-muted)]">Pregunta {index + 1}</p>
                     {answer?.isCorrect ? <Check className="size-4 text-[var(--success)]" aria-label="Correcta" /> : answer?.selectedAnswer ? <X className="size-4 text-[var(--danger)]" aria-label="Incorrecta" /> : <Minus className="size-4 text-[var(--text-muted)]" aria-label="Omitida" />}
@@ -125,16 +126,9 @@ export function ResultsPage() {
           </motion.div>
         )}
 
-        <a
-          className="social-link mt-3"
-          href="https://chriss-12.github.io/TCA-LP-002-RRSS/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Abrir las redes sociales de TCA en una nueva pestaña"
-        >
-          <ExternalLink className="size-4" aria-hidden="true" />
-          Redes sociales de TCA
-        </a>
+        <div className="mt-3">
+          <SocialLinkCard />
+        </div>
       </section>
 
       <button type="button" className="home-fab" onClick={handleReset} aria-label="Salir a la pantalla principal">
@@ -148,13 +142,13 @@ export function ResultsPage() {
 interface SummaryItemProps { icon: typeof Check; label: string; value: string; tone: "success" | "danger" | "muted" | "primary"; }
 function SummaryItem({ icon: Icon, label, value, tone }: SummaryItemProps) {
   const tones = { success: "text-[var(--success)] bg-[var(--surface)]", danger: "text-[var(--danger)] bg-[var(--surface)]", muted: "text-[var(--text-muted)] bg-[var(--surface)]", primary: "text-[var(--primary)] bg-[var(--surface)]" };
-  return <div className={`rounded-2xl border border-[var(--color-5)] p-3 ${tones[tone]}`}><Icon className="mx-auto size-4" aria-hidden="true" /><p className="mt-1 text-[11px]">{label}</p><p className="display-type mt-0.5 text-xl font-semibold">{value}</p></div>;
+  return <div className={`rounded-2xl border-2 border-[var(--card-border)] p-3 ${tones[tone]}`}><Icon className="mx-auto size-4" aria-hidden="true" /><p className="mt-1 text-[11px]">{label}</p><p className="display-type mt-0.5 text-xl font-semibold">{value}</p></div>;
 }
 
 interface ResultPanelProps { title: string; icon: typeof Check; children: React.ReactNode; }
 function ResultPanel({ title, icon: Icon, children }: ResultPanelProps) {
   return (
-    <div className="rounded-[1.5rem] border border-[var(--color-4)] bg-[var(--surface)] p-4 shadow-[var(--shadow-card)]">
+    <div className="rounded-[1.5rem] border-2 border-[var(--card-border)] bg-[var(--surface)] p-4 shadow-[var(--shadow-card)]">
       <div className="mb-4 flex items-center gap-2">
         <Icon className="size-4 text-[var(--primary)]" aria-hidden="true" />
         <h2 className="display-type text-lg font-semibold">{title}</h2>

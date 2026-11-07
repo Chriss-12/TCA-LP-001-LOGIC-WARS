@@ -8,6 +8,7 @@ import { BrandMark } from "../components/BrandMark";
 import { GameButton } from "../components/GameButton";
 import { GameRules } from "../components/GameRules";
 import { GameShell } from "../components/GameShell";
+import { SocialLinkCard } from "../components/SocialLinkCard";
 import { TimeSettings } from "../components/TimeSettings";
 import { useGameStore } from "../store/game.store";
 
@@ -102,6 +103,9 @@ export function GameSetupPage() {
             <ArrowRight className="size-5" aria-hidden="true" />
           </GameButton>
         </motion.form>
+        <div className="mt-3">
+          <SocialLinkCard />
+        </div>
       </div>
 
       {showRules && (

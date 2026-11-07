@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./features/game/styles/game-responsive.css";
+@import "./features/game/styles/social-link-card.css";
 
 :root {
   --wine: #762258;
@@ -35,6 +36,8 @@
   --secondary: var(--silver);
   --accent: var(--steel);
   --border: var(--silver);
+  --card-border: var(--navy);
+  --card-border-width: 2px;
   --success: var(--navy);
   --success-soft: var(--silver);
   --danger: var(--wine);
@@ -152,7 +155,7 @@ a:focus-visible {
 .glass-card {
   position: relative;
   overflow: hidden;
-  border: 1px solid var(--color-4);
+  border: var(--card-border-width) solid var(--card-border);
   background: var(--surface);
   box-shadow: var(--shadow-major);
   backdrop-filter: blur(8px);
@@ -177,7 +180,7 @@ a:focus-visible {
   min-height: 3rem;
   align-items: center;
   gap: 0.45rem;
-  border: 1px solid var(--silver);
+  border: var(--card-border-width) solid var(--card-border);
   border-radius: 999px;
   background: var(--smoke);
   padding: 0.55rem 0.85rem;
@@ -202,7 +205,7 @@ a:focus-visible {
   max-height: min(88svh, 46rem);
   overflow-y: auto;
   overscroll-behavior: contain;
-  border: 1px solid var(--silver);
+  border: var(--card-border-width) solid var(--card-border);
   border-radius: var(--radius-major);
   background: var(--smoke);
   padding: 1.35rem;
@@ -219,26 +222,13 @@ a:focus-visible {
   padding: 0.8rem 0.5rem;
 }
 
-/* tastemaker · critique: un gesto editorial breve da identidad sin competir con el juego. */
-.glass-card::before,
-.question-card::before {
-  position: absolute;
-  top: 0;
-  left: 2rem;
-  width: 3.5rem;
-  height: 0.25rem;
-  border-radius: 0 0 999px 999px;
-  background: var(--color-2);
-  content: "";
-}
-
 .question-card {
   position: relative;
   overflow: hidden;
   display: grid;
   min-height: clamp(9rem, 24svh, 12rem);
   place-content: center;
-  border: 1px solid var(--color-4);
+  border: var(--card-border-width) solid var(--card-border);
   border-radius: var(--radius-major);
   background: var(--surface);
   padding: clamp(1.25rem, 5vw, 2rem);
@@ -246,7 +236,7 @@ a:focus-visible {
 }
 
 .answers-card {
-  border: 1px solid var(--color-4);
+  border: var(--card-border-width) solid var(--card-border);
   border-radius: var(--radius-card);
   background: var(--surface);
   padding: clamp(0.85rem, 3.5vw, 1.25rem);
@@ -266,7 +256,7 @@ a:focus-visible {
 .code-block {
   width: 100%;
   margin: 0;
-  border: 1px solid var(--color-4);
+  border: var(--card-border-width) solid var(--card-border);
   border-radius: 1.1rem;
   background: var(--surface);
   padding: 0.9rem 1rem;
@@ -306,7 +296,7 @@ a:focus-visible {
   align-items: center;
   grid-template-columns: 2.25rem minmax(0, 1fr) auto;
   gap: 0.75rem;
-  border: 1px solid var(--border);
+  border: var(--card-border-width) solid var(--card-border);
   border-radius: 1.25rem;
   padding: 0.75rem;
   text-align: left;
@@ -339,11 +329,22 @@ a:focus-visible {
 .feedback-card {
   margin-top: 0.55rem;
   overflow: hidden;
+  border: var(--card-border-width) solid;
   border-radius: var(--radius-row);
   padding: 0.65rem 0.75rem;
 }
-.feedback-card--correct { background: var(--success-soft); color: var(--success); }
-.feedback-card--wrong { background: var(--danger-soft); color: var(--danger); }
+.feedback-card--correct {
+  border-color: #4f9a67;
+  background: color-mix(in srgb, var(--state-safe) 42%, var(--smoke));
+  color: #2f6f45;
+}
+.feedback-card--wrong {
+  border-color: #c95b5b;
+  background: color-mix(in srgb, var(--state-danger) 32%, var(--smoke));
+  color: #a12828;
+}
+.feedback-result,
+.feedback-explanation { color: var(--graphite); }
 
 .timer-card {
   display: flex;
@@ -351,7 +352,7 @@ a:focus-visible {
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  border: 1px solid rgb(var(--graphite-rgb) / 0.18);
+  border: var(--card-border-width) solid var(--card-border);
   border-radius: 1rem;
   background: var(--surface);
   padding: 0.65rem 0.8rem;
@@ -373,7 +374,7 @@ a:focus-visible {
   align-items: baseline;
   justify-content: space-between;
   gap: 0.5rem;
-  border: 1px solid var(--silver);
+  border: var(--card-border-width) solid var(--card-border);
   border-radius: 1rem;
   background: var(--smoke);
   padding: 0.65rem 0.8rem;
@@ -460,23 +461,6 @@ a:focus-visible {
 .home-fab:hover { background: var(--executive-wine); }
 .home-fab:active { transform: scale(0.97); }
 
-.social-link {
-  display: flex;
-  min-height: 3rem;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border: 1px solid var(--silver);
-  border-radius: 1rem;
-  background: var(--smoke);
-  padding: 0.75rem 1rem;
-  color: var(--wine);
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.social-link:hover { border-color: var(--wine); }
-
 .answer-reaction {
   position: fixed;
   z-index: 35;
@@ -510,7 +494,7 @@ a:focus-visible {
 .surrender-dialog {
   position: relative;
   width: min(100%, 28rem);
-  border: 1px solid var(--color-4);
+  border: var(--card-border-width) solid var(--card-border);
   border-radius: 2rem;
   background: var(--color-1);
   padding: 1.5rem;
@@ -536,7 +520,7 @@ a:focus-visible {
   justify-content: space-between;
   gap: 1rem;
   margin-top: 1.25rem;
-  border: 1px solid var(--color-4);
+  border: var(--card-border-width) solid var(--card-border);
   border-radius: 1.25rem;
   background: var(--color-1);
   padding: 0.85rem;
