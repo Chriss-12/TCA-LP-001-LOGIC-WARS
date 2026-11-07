@@ -76,10 +76,10 @@ export function GamePage() {
         />
       }
     >
-      <section aria-label="Progreso de la partida" className="mb-3 px-1">
+      <section aria-label="Progreso de la partida" className="game-progress mb-3 px-1">
         <div className="mb-2 flex items-center justify-between text-xs font-bold">
-          <span>Pregunta {currentQuestionIndex + 1} <span className="text-[var(--text-muted)]">de {QUESTION_COUNT}</span></span>
-          <span className="display-type text-sm text-[var(--text-muted)]">{Math.round(progress)}%</span>
+          <span>Pregunta {currentQuestionIndex + 1} <span className="text-[var(--silver)]">de {QUESTION_COUNT}</span></span>
+          <span className="display-type text-sm text-[var(--silver)]">{Math.round(progress)}%</span>
         </div>
         <div className="h-2 overflow-hidden rounded-full bg-[var(--surface-muted)]">
           <motion.div

@@ -1,5 +1,5 @@
-import { useState, type FormEvent } from "react";
-import { ArrowRight, BookOpen, Hash } from "lucide-react";
+import { useRef, useState, type FormEvent } from "react";
+import { ArrowRight, BookOpen, X } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
@@ -15,11 +15,17 @@ export function GameSetupPage() {
   const navigate = useNavigate();
   const shouldReduceMotion = useReducedMotion();
   const { startGame, durationMinutes, setDurationMinutes } = useGameStore();
-  const [code, setCode] = useState("");
+  const codeInputRef = useRef<HTMLInputElement>(null);
+  const [code, setCode] = useState("0000");
   const [showRules, setShowRules] = useState(false);
 
   const handleCodeChange = (value: string) => {
     setCode(value.replace(/\D/g, "").slice(0, 4));
+  };
+
+  const clearCode = () => {
+    setCode("");
+    codeInputRef.current?.focus();
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -66,23 +72,29 @@ export function GameSetupPage() {
               TCA–
             </span>
             <input
+              ref={codeInputRef}
               id="game-code"
               value={code}
               onChange={(event) => handleCodeChange(event.target.value)}
-              placeholder="4821"
+              placeholder="0000"
               inputMode="numeric"
               pattern="[0-9]{1,4}"
               autoComplete="off"
               maxLength={4}
-              aria-describedby="code-help"
               className="game-code-input display-type h-17 min-w-0 flex-1 bg-transparent px-3 text-3xl font-medium tracking-[0.12em] placeholder:text-[var(--color-5)] sm:px-4"
             />
-            <Hash className="mr-4 size-5 self-center text-[var(--primary)]" aria-hidden="true" />
+            {code && (
+              <button
+                type="button"
+                className="clear-code-button"
+                onClick={clearCode}
+                aria-label="Limpiar número de partida"
+                title="Limpiar"
+              >
+                <X className="size-5" aria-hidden="true" />
+              </button>
+            )}
           </div>
-          <p id="code-help" className="mt-2 text-xs text-[var(--text-muted)]">
-            Hasta 4 dígitos. Introduzcan el mismo número en ambos celulares.
-          </p>
-
           <TimeSettings value={durationMinutes} onChange={setDurationMinutes} />
 
           <GameButton type="submit" className="mt-5 justify-between! px-5!">

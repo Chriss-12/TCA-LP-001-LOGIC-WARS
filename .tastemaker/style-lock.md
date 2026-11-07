@@ -22,7 +22,7 @@
 
 Green, yellow and red are deliberate semantic exceptions for countdown urgency and answer feedback.
 
-The palette comes directly from the TCA chromatic reference supplied by the user. The page background remains a fixed Blanco humo to Gris plata gradient.
+The palette comes directly from the TCA chromatic reference supplied by the user. The page background is a fixed Vino ejecutivo to Azul acero gradient behind stable light surfaces.
 
 ### Verified contrast pairs
 
@@ -46,11 +46,12 @@ The palette comes directly from the TCA chromatic reference supplied by the user
 - The countdown shows only digits and changes from green to yellow to red at the remaining-time thirds.
 - Setup includes a persisted 2–5 minute stepper with 3 minutes as the default.
 - Setup rules and match facts live in a blurred internal dialog opened from the header.
-- Answer choices keep a 2 × 2 grid on mobile and desktop.
+- Answer choices keep a compact 2 × 2 grid on mobile and desktop, with a 64 px minimum mobile height.
 - Correct and incorrect selections trigger a brief green or red vector-face reaction.
 - Surrender uses an icon-only floating exit button and always requires an explicit yes/no confirmation.
 - Results use a labeled floating exit button plus a separate external TCA social link.
-- The page uses one fixed layered white gradient with no particles, grid, dotted overlay, or pointer reaction.
+- The page uses one fixed Vino ejecutivo to Azul acero gradient with no particles, grid, dotted overlay, or pointer reaction.
+- The compact upper-left brand mark uses 18 px type and a 32 px diamond signature.
 - TCA identity uses the three-diamond reference supplied by the user as the favicon and as a restrained interface motif.
 - Code is separated from the prompt, manually indented, and never wrapped at arbitrary characters.
 - Section separation uses spacing and surface contrast, not mixed divider treatments.
