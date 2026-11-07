@@ -108,7 +108,7 @@ export function GamePage() {
           </section>
 
           <section className="answers-card" aria-label="Respuestas">
-            <div className="grid gap-2.5 sm:grid-cols-2" role="group" aria-label="Opciones de respuesta">
+            <div className="grid grid-cols-2 gap-2.5" role="group" aria-label="Opciones de respuesta">
               {Object.entries(question.options).map(([key, option]) => {
                 const isSelected = currentAnswer?.selectedAnswer === key;
                 const isCorrect = Boolean(currentAnswer && key === question.correctAnswer);
@@ -121,7 +121,7 @@ export function GamePage() {
                 return (
                   <button key={key} type="button" onClick={() => answerQuestion(key)} disabled={Boolean(currentAnswer)} aria-pressed={isSelected} className={`answer-option ${stateClass}`}>
                     <span className="answer-key">{key}</span>
-                    <span className="answer-copy min-w-0 flex-1 text-sm leading-5 font-semibold sm:text-base">{option}</span>
+                    <span className="answer-copy min-w-0 flex-1 text-sm leading-5 font-medium sm:text-base">{option}</span>
                     {isCorrect && <Check className="size-5 shrink-0" aria-hidden="true" />}
                     {isWrongSelection && <X className="size-5 shrink-0" aria-hidden="true" />}
                   </button>

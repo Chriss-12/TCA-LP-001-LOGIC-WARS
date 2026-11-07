@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import confetti from "canvas-confetti";
-import { BarChart3, Check, ChevronDown, Clock3, Code2, Hash, Medal, Minus, RotateCcw, Target, X } from "lucide-react";
+import { BarChart3, Check, ChevronDown, Clock3, Code2, ExternalLink, Hash, LogOut, Medal, Minus, Target, X } from "lucide-react";
 import { motion } from "motion/react";
 import { Navigate, useNavigate } from "react-router";
 
@@ -63,7 +63,7 @@ export function ResultsPage() {
           <Medal className="size-7" aria-hidden="true" />
         </div>
         <p className="mt-5 text-xs font-bold tracking-[0.16em] text-[var(--primary)] uppercase">Partida terminada</p>
-        <h1 className="editorial-type mt-2 text-4xl leading-[1.02] font-semibold tracking-[-0.03em] sm:text-5xl">{resultMessage.title}</h1>
+        <h1 className="editorial-type mt-2 text-4xl leading-[1.02] font-medium tracking-[-0.03em] sm:text-5xl">{resultMessage.title}</h1>
         <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-[var(--text-muted)]">{resultMessage.body}</p>
 
         <div className="mx-auto mt-6 max-w-sm rounded-3xl border border-[var(--color-5)] bg-[var(--surface)] px-5 py-5">
@@ -99,7 +99,7 @@ export function ResultsPage() {
         </ResultPanel>
       </section>
 
-      <section className="mt-3">
+      <section className="mt-3 mb-24">
         <GameButton variant="secondary" onClick={() => setShowAnswers((current) => !current)} aria-expanded={showAnswers}>
           <Code2 className="size-5" aria-hidden="true" />{showAnswers ? "Ocultar respuestas" : "Revisar respuestas"}
           <ChevronDown className={`size-4 transition-transform ${showAnswers ? "rotate-180" : ""}`} aria-hidden="true" />
@@ -112,11 +112,11 @@ export function ResultsPage() {
               return (
                 <article key={question.id} className="rounded-2xl border border-[var(--color-4)] bg-[var(--surface)] p-4">
                   <div className="flex items-center justify-between gap-3">
-                    <p className="display-type text-sm font-semibold text-[var(--text-muted)]">Pregunta {index + 1}</p>
+                    <p className="display-type text-sm font-medium text-[var(--text-muted)]">Pregunta {index + 1}</p>
                     {answer?.isCorrect ? <Check className="size-4 text-[var(--success)]" aria-label="Correcta" /> : answer?.selectedAnswer ? <X className="size-4 text-[var(--danger)]" aria-label="Incorrecta" /> : <Minus className="size-4 text-[var(--text-muted)]" aria-label="Omitida" />}
                   </div>
                   {question.code && <pre className="code-block code-block--compact"><code>{question.code}</code></pre>}
-                  <p className="mt-2 text-sm leading-5 font-semibold">{question.question}</p>
+                  <p className="mt-2 text-sm leading-5 font-medium">{question.question}</p>
                   <p className="mt-2 text-xs leading-5 text-[var(--text-muted)]">Tu respuesta: <strong>{selectedLabel}</strong></p>
                   {!answer?.isCorrect && <p className="text-xs leading-5 text-[var(--success)]">Correcta: {question.correctAnswer}. {question.options[question.correctAnswer]}</p>}
                 </article>
@@ -124,9 +124,23 @@ export function ResultsPage() {
             })}
           </motion.div>
         )}
+
+        <a
+          className="social-link mt-3"
+          href="https://chriss-12.github.io/TCA-LP-002-RRSS/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Abrir las redes sociales de TCA en una nueva pestaña"
+        >
+          <ExternalLink className="size-4" aria-hidden="true" />
+          Redes sociales de TCA
+        </a>
       </section>
 
-      <GameButton onClick={handleReset} className="mt-3 mb-2"><RotateCcw className="size-5" aria-hidden="true" />Nueva partida</GameButton>
+      <button type="button" className="home-fab" onClick={handleReset} aria-label="Salir a la pantalla principal">
+        <LogOut className="size-5" aria-hidden="true" />
+        <span>Pantalla principal</span>
+      </button>
     </GameShell>
   );
 }

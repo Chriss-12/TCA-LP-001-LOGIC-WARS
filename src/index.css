@@ -12,9 +12,13 @@
   --silver: #d8d6d7;
   --graphite: #252525;
   --wine-rgb: 118 34 88;
+  --steel-rgb: 79 109 130;
   --executive-wine-rgb: 75 22 56;
   --smoke-rgb: 248 248 248;
   --graphite-rgb: 37 37 37;
+  --state-safe: #a8e6b0;
+  --state-warning: #ffe28a;
+  --state-danger: #ff9b9b;
   --color-1: var(--smoke);
   --color-2: var(--wine);
   --color-3: var(--silver);
@@ -42,11 +46,12 @@
   --shadow-card: 0 12px 30px rgb(var(--executive-wine-rgb) / 0.1);
   --shadow-button: 0 8px 20px rgb(var(--wine-rgb) / 0.2);
   --font-body: "Nunito Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Fredoka Variable", "Nunito Variable", sans-serif;
+  --font-display: "Nunito Variable", ui-sans-serif, system-ui, sans-serif;
   --font-editorial: "Fraunces Variable", Georgia, serif;
   color: var(--text-primary);
   background: var(--background);
   font-family: var(--font-body);
+  font-weight: 350;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -86,12 +91,10 @@ a:focus-visible {
 .editorial-type { font-family: var(--font-editorial); }
 
 .game-surface {
-  background: linear-gradient(
-    145deg,
-    var(--smoke) 0%,
-    var(--smoke) 52%,
-    var(--silver) 150%
-  );
+  background:
+    radial-gradient(circle at 8% 4%, rgb(var(--steel-rgb) / 0.16), transparent 32%),
+    radial-gradient(circle at 96% 94%, rgb(var(--wine-rgb) / 0.1), transparent 36%),
+    linear-gradient(145deg, var(--smoke) 0%, var(--smoke) 58%, var(--silver) 150%);
   background-attachment: fixed;
 }
 
@@ -163,12 +166,51 @@ a:focus-visible {
   outline: none;
 }
 
-.rules-section {
-  border: 1px solid var(--color-4);
+.rules-trigger {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid var(--silver);
+  border-radius: 999px;
+  background: var(--smoke);
+  padding: 0.55rem 0.85rem;
+  color: var(--graphite);
+  font-weight: 500;
+}
+
+.rules-backdrop {
+  position: fixed;
+  z-index: 60;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgb(var(--graphite-rgb) / 0.38);
+  backdrop-filter: blur(12px);
+  padding: 1rem;
+}
+
+.rules-dialog {
+  position: relative;
+  width: min(100%, 32rem);
+  max-height: min(88svh, 46rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--silver);
   border-radius: var(--radius-major);
-  background: var(--surface);
-  padding: clamp(1.25rem, 5vw, 2rem);
-  box-shadow: var(--shadow-card);
+  background: var(--smoke);
+  padding: 1.35rem;
+  box-shadow: 0 24px 80px rgb(var(--graphite-rgb) / 0.3);
+}
+
+.rules-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  border: 1px solid var(--silver);
+  border-radius: var(--radius-card);
+  background: color-mix(in srgb, var(--silver) 45%, var(--smoke));
+  padding: 0.8rem 0.5rem;
 }
 
 /* tastemaker · critique: un gesto editorial breve da identidad sin competir con el juego. */
@@ -252,10 +294,11 @@ a:focus-visible {
 }
 
 .answer-option {
-  display: flex;
-  min-height: 3.75rem;
+  display: grid;
+  min-height: 4.25rem;
   width: 100%;
   align-items: center;
+  grid-template-columns: 2.25rem minmax(0, 1fr) auto;
   gap: 0.75rem;
   border: 1px solid var(--border);
   border-radius: 1.25rem;
@@ -283,7 +326,7 @@ a:focus-visible {
   border-radius: 0.8rem;
   background: var(--surface-muted);
   color: var(--text-primary);
-  font-family: "Fredoka Variable", sans-serif;
+  font-family: var(--font-display);
   font-weight: 650;
 }
 
@@ -309,9 +352,9 @@ a:focus-visible {
   color: var(--text-primary);
   transition: background-color 240ms ease, border-color 240ms ease;
 }
-.timer-card--safe { background: var(--steel); color: var(--smoke); }
-.timer-card--warning { background: var(--institutional-gray); color: var(--graphite); }
-.timer-card--danger { background: var(--wine); color: var(--smoke); }
+.timer-card--safe { background: var(--state-safe); color: var(--graphite); }
+.timer-card--warning { background: var(--state-warning); color: var(--graphite); }
+.timer-card--danger { background: var(--state-danger); color: var(--graphite); }
 
 .timer-progress {
   transform-origin: left center;
@@ -389,6 +432,45 @@ a:focus-visible {
 .surrender-fab:hover { background: var(--executive-wine); }
 .surrender-fab:active { transform: scale(0.96); }
 
+.home-fab {
+  position: fixed;
+  z-index: 45;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  display: inline-flex;
+  min-height: 3.25rem;
+  align-items: center;
+  gap: 0.55rem;
+  border: 1px solid var(--executive-wine);
+  border-radius: 999px;
+  background: var(--wine);
+  padding: 0.7rem 1rem;
+  color: var(--smoke);
+  font-weight: 500;
+  box-shadow: 0 12px 28px rgb(var(--wine-rgb) / 0.24);
+  transition: background-color 150ms ease, transform 120ms ease;
+}
+
+.home-fab:hover { background: var(--executive-wine); }
+.home-fab:active { transform: scale(0.97); }
+
+.social-link {
+  display: flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid var(--silver);
+  border-radius: 1rem;
+  background: var(--smoke);
+  padding: 0.75rem 1rem;
+  color: var(--wine);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.social-link:hover { border-color: var(--wine); }
+
 .answer-reaction {
   position: fixed;
   z-index: 35;
@@ -406,8 +488,8 @@ a:focus-visible {
   pointer-events: none;
 }
 
-.answer-reaction--correct { background: var(--steel); color: var(--smoke); }
-.answer-reaction--wrong { background: var(--wine); color: var(--smoke); }
+.answer-reaction--correct { border-color: #4f9a67; background: var(--state-safe); color: var(--graphite); }
+.answer-reaction--wrong { border-color: #c95b5b; background: var(--state-danger); color: var(--graphite); }
 
 .dialog-backdrop {
   position: fixed;
@@ -483,7 +565,7 @@ a:focus-visible {
   border: 0;
   background: transparent;
   color: var(--text-primary);
-  font-family: "Fredoka Variable", sans-serif;
+  font-family: var(--font-display);
   font-size: 1.4rem;
   font-weight: 600;
   text-align: center;
@@ -506,6 +588,34 @@ a:focus-visible {
 @media (max-height: 700px) {
   .question-card { min-height: 8.5rem; padding-block: 1rem; }
   .answer-option { min-height: 3.35rem; padding-block: 0.55rem; }
+}
+
+@media (max-width: 639px) {
+  .answer-option {
+    min-height: 7rem;
+    align-content: start;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto 1fr;
+    gap: 0.55rem;
+    padding: 0.7rem;
+  }
+
+  .answer-option .answer-key {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .answer-option .answer-copy {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .answer-option > svg {
+    grid-column: 2;
+    grid-row: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

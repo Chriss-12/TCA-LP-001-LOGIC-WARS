@@ -23,7 +23,7 @@ export function AnswerReaction({ isCorrect }: AnswerReactionProps) {
       aria-live="polite"
     >
       <Icon className="size-12" strokeWidth={2.2} aria-hidden="true" />
-      <span className="display-type text-2xl font-semibold">{isCorrect ? "¡Bien!" : "¡Casi!"}</span>
+      <span className="display-type text-2xl font-medium">{isCorrect ? "¡Bien!" : "¡Casi!"}</span>
     </motion.div>
   );
 }

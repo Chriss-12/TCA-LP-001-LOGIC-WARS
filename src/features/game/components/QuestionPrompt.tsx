@@ -15,7 +15,7 @@ export function QuestionPrompt({ question }: QuestionPromptProps) {
       )}
       <h1
         id="current-question"
-        className={`question-title display-type mx-auto text-center leading-[1.12] font-semibold tracking-[-0.025em] ${
+        className={`question-title display-type mx-auto text-center leading-[1.12] font-medium tracking-[-0.025em] ${
           question.code
             ? "mt-4 text-[clamp(1.45rem,6vw,2.15rem)]"
             : "text-[clamp(1.75rem,7vw,2.75rem)]"
