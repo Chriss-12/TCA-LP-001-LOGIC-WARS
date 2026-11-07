@@ -1,0 +1,7 @@
+interface:
+  display_name: "TCA Brand UI"
+  short_description: "Keep TCA La Paz interfaces on brand"
+  brand_color: "#75224F"
+  default_prompt: "Use $tca-brand-ui to design this interface in the TCA La Paz visual identity."
+policy:
+  allow_implicit_invocation: true

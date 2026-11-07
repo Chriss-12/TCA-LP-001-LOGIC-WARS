@@ -21,7 +21,11 @@ export function QuestionPrompt({ question }: QuestionPromptProps) {
             : "text-[clamp(1.75rem,7vw,2.75rem)]"
         }`}
       >
-        {question.question}
+        {question.question.split("\n").map((line) => (
+          <span key={line} className="block">
+            {line}
+          </span>
+        ))}
       </h1>
     </div>
   );

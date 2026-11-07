@@ -1,0 +1,7 @@
+interface:
+  display_name: "Build Social Hub"
+  short_description: "Build TCA social links and interactions"
+  brand_color: "#75224F"
+  default_prompt: "Use $build-social-hub to build or revise the TCA La Paz social link page."
+policy:
+  allow_implicit_invocation: true

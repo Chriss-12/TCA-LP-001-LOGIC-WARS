@@ -63,7 +63,7 @@ export function ResultsPage() {
           <Medal className="size-7" aria-hidden="true" />
         </div>
         <p className="mt-5 text-xs font-bold tracking-[0.16em] text-[var(--primary)] uppercase">Partida terminada</p>
-        <h1 className="display-type mt-2 text-4xl leading-none font-semibold tracking-[-0.03em] sm:text-5xl">{resultMessage.title}</h1>
+        <h1 className="editorial-type mt-2 text-4xl leading-[1.02] font-semibold tracking-[-0.03em] sm:text-5xl">{resultMessage.title}</h1>
         <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-[var(--text-muted)]">{resultMessage.body}</p>
 
         <div className="mx-auto mt-6 max-w-sm rounded-3xl border border-[var(--color-5)] bg-[var(--surface)] px-5 py-5">

@@ -1336,7 +1336,7 @@ export const questionBank: QuestionBank = {
     id: "LOG_015",
     category: "logica",
     difficulty: "hard",
-    question: "Si P = true y Q = false, ¿cuánto vale (P AND Q) OR NOT Q?",
+    question: "Si P = true y Q = false,\n¿cuánto vale (P\u00A0AND\u00A0Q) OR NOT\u00A0Q?",
     options: {
       A: "true",
       B: "false",

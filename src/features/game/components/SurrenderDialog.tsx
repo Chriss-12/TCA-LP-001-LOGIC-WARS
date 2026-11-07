@@ -40,7 +40,7 @@ export function SurrenderDialog({ onCancel, onConfirm }: SurrenderDialogProps) {
         <div className="mx-auto grid size-14 place-items-center rounded-2xl border border-[var(--color-5)] bg-[var(--surface)]">
           <Flag className="size-7" aria-hidden="true" />
         </div>
-        <h2 id="surrender-title" className="display-type mt-4 text-center text-3xl font-semibold">
+        <h2 id="surrender-title" className="editorial-type mt-4 text-center text-3xl font-semibold">
           ¿Rendirse ahora?
         </h2>
         <p className="mx-auto mt-2 max-w-sm text-center text-sm leading-6 text-[var(--text-muted)]">
