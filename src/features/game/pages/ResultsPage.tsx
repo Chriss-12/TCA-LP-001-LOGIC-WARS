@@ -37,7 +37,7 @@ export function ResultsPage() {
   useEffect(() => {
     if (!isFinished || score < 15) return;
     const timer = window.setTimeout(() => {
-      void confetti({ particleCount: 70, spread: 65, origin: { y: 0.7 }, colors: ["#79215D", "#DDBED0", "#7B506B"], disableForReducedMotion: true });
+      void confetti({ particleCount: 70, spread: 65, origin: { y: 0.7 }, colors: ["#762258", "#4F6D82", "#D8D6D7"], disableForReducedMotion: true });
     }, 250);
     return () => window.clearTimeout(timer);
   }, [isFinished, score]);
@@ -139,7 +139,15 @@ function SummaryItem({ icon: Icon, label, value, tone }: SummaryItemProps) {
 
 interface ResultPanelProps { title: string; icon: typeof Check; children: React.ReactNode; }
 function ResultPanel({ title, icon: Icon, children }: ResultPanelProps) {
-  return <div className="rounded-[1.5rem] border border-[var(--color-4)] bg-[var(--surface)] p-4 shadow-[0_12px_30px_rgb(121_33_93/0.1)]"><div className="mb-4 flex items-center gap-2"><Icon className="size-4 text-[var(--primary)]" aria-hidden="true" /><h2 className="display-type text-lg font-semibold">{title}</h2></div><div className="space-y-3">{children}</div></div>;
+  return (
+    <div className="rounded-[1.5rem] border border-[var(--color-4)] bg-[var(--surface)] p-4 shadow-[var(--shadow-card)]">
+      <div className="mb-4 flex items-center gap-2">
+        <Icon className="size-4 text-[var(--primary)]" aria-hidden="true" />
+        <h2 className="display-type text-lg font-semibold">{title}</h2>
+      </div>
+      <div className="space-y-3">{children}</div>
+    </div>
+  );
 }
 
 interface ResultRowProps { label: string; value: string; children?: React.ReactNode; }

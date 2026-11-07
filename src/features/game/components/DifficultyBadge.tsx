@@ -2,9 +2,9 @@ import { POINTS, type Difficulty } from "../../questions/types/question.types";
 import { DIFFICULTY_LABELS } from "../constants/game.constants";
 
 const COLOR_STYLES: Record<Difficulty, string> = {
-  easy: "border-[#4f9a67] bg-[#bde7c8] text-black",
-  medium: "border-[#b48a18] bg-[#ffe28a] text-black",
-  hard: "border-[#b84b50] bg-[#ffadad] text-black",
+  easy: "border-[var(--steel)] bg-[var(--silver)] text-[var(--navy)]",
+  medium: "border-[var(--charcoal)] bg-[var(--institutional-gray)] text-[var(--graphite)]",
+  hard: "border-[var(--executive-wine)] bg-[var(--wine)] text-[var(--smoke)]",
 };
 
 interface DifficultyBadgeProps {

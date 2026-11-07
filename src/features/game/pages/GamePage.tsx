@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { ArrowRight, Check, CheckCircle2, Flag, SkipForward, X, XCircle } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
+import { ArrowRight, Check, CheckCircle2, LogOut, SkipForward, X, XCircle } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Navigate, useNavigate } from "react-router";
 
 import { AnswerReaction } from "../components/AnswerReaction";
@@ -16,6 +16,7 @@ import { useGameStore } from "../store/game.store";
 
 export function GamePage() {
   const navigate = useNavigate();
+  const shouldReduceMotion = useReducedMotion();
   const [showSurrenderDialog, setShowSurrenderDialog] = useState(false);
   const {
     questions,
@@ -71,41 +72,31 @@ export function GamePage() {
         <GameHudDock
           remainingMs={remainingMs}
           durationMinutes={durationMinutes}
+          score={score}
         />
       }
     >
-      <header className="game-toolbar">
-        <div>
-          <p className="text-xs font-bold text-[var(--text-muted)]">Puntuación</p>
-          <p className="display-type text-3xl leading-none font-semibold">{score} pts</p>
-        </div>
-        <button
-          type="button"
-          onClick={() => setShowSurrenderDialog(true)}
-          className="surrender-button"
-        >
-          <Flag className="size-4" aria-hidden="true" />
-          Rendirse
-        </button>
-      </header>
-
-      <section aria-label="Progreso de la partida" className="mb-4 px-1">
+      <section aria-label="Progreso de la partida" className="mb-3 px-1">
         <div className="mb-2 flex items-center justify-between text-xs font-bold">
           <span>Pregunta {currentQuestionIndex + 1} <span className="text-[var(--text-muted)]">de {QUESTION_COUNT}</span></span>
           <span className="display-type text-sm text-[var(--text-muted)]">{Math.round(progress)}%</span>
         </div>
         <div className="h-2 overflow-hidden rounded-full bg-[var(--surface-muted)]">
-          <motion.div className="h-full rounded-full bg-[var(--primary)]" animate={{ width: `${progress}%` }} transition={{ duration: 0.3 }} />
+          <motion.div
+            className="h-full w-full origin-left rounded-full bg-[var(--primary)]"
+            animate={{ scaleX: progress / 100 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.3 }}
+          />
         </div>
       </section>
 
       <AnimatePresence mode="wait">
         <motion.div
           key={question.id}
-          initial={{ opacity: 0, y: 14 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.22 }}
+          exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
+          transition={{ duration: shouldReduceMotion ? 0.1 : 0.22 }}
           className="flex flex-1 flex-col gap-3"
         >
           <section className="question-card" aria-labelledby="current-question">
@@ -140,7 +131,11 @@ export function GamePage() {
 
             <AnimatePresence initial={false}>
               {currentAnswer && (
-                <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} className={`feedback-card ${currentAnswer.isCorrect ? "feedback-card--correct" : "feedback-card--wrong"}`}>
+                <motion.div
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`feedback-card ${currentAnswer.isCorrect ? "feedback-card--correct" : "feedback-card--wrong"}`}
+                >
                   <div className="flex items-center gap-2 font-bold">
                     {currentAnswer.isCorrect ? <CheckCircle2 className="size-5" aria-hidden="true" /> : <XCircle className="size-5" aria-hidden="true" />}
                     <span>{currentAnswer.isCorrect ? "¡Respuesta correcta!" : "Esta vez no fue"}</span>
@@ -171,6 +166,16 @@ export function GamePage() {
           {isLastQuestion ? "Ver resultado" : "Continuar"} <ArrowRight className="size-5" aria-hidden="true" />
         </GameButton>
       </div>
+
+      <button
+        type="button"
+        onClick={() => setShowSurrenderDialog(true)}
+        className="surrender-fab"
+        aria-label="Rendirse y salir de la partida"
+        title="Rendirse"
+      >
+        <LogOut className="size-5" aria-hidden="true" />
+      </button>
 
       <AnimatePresence>
         {showSurrenderDialog && (

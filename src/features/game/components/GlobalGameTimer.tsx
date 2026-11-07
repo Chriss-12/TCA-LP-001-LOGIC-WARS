@@ -1,5 +1,3 @@
-import { Clock3 } from "lucide-react";
-
 interface GlobalGameTimerProps {
   remainingMs: number;
   durationMinutes: number;
@@ -19,19 +17,13 @@ export function GlobalGameTimer({ remainingMs, durationMinutes }: GlobalGameTime
       className={`timer-card timer-card--${timerPhase}`}
       aria-label={`Tiempo restante: ${minutes} minutos y ${seconds} segundos`}
     >
-      <Clock3 className="size-4 shrink-0" aria-hidden="true" />
-      <div className="min-w-0 flex-1">
-        <div className="flex items-baseline justify-between gap-3">
-          <span className="text-[10px] font-bold tracking-[0.08em]">Tiempo restante</span>
-          <time className="display-type text-lg leading-none font-semibold tabular-nums">{display}</time>
-        </div>
-        <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-black/10">
-          <div
-            className="h-full rounded-full bg-current transition-[width] duration-300"
-            style={{ width: `${progress}%` }}
-            aria-hidden="true"
-          />
-        </div>
+      <time className="display-type text-2xl leading-none font-semibold tabular-nums">{display}</time>
+      <div className="h-1.5 min-w-0 flex-1 overflow-hidden rounded-full bg-[rgb(var(--graphite-rgb)/0.18)]">
+        <div
+          className="timer-progress h-full w-full rounded-full bg-current"
+          style={{ transform: `scaleX(${progress / 100})` }}
+          aria-hidden="true"
+        />
       </div>
     </div>
   );

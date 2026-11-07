@@ -9,20 +9,25 @@
 
 ## Palette
 
-- Page background: a fixed white gradient from `#FFFFFF` through `#FCF9FB` to `#F4EDF1`
-- All primary text: black (`#111`)
-- Primary buttons and progress: `#79215D`
-- Every card and content container: white (`#FCFCFC`)
-- Card borders and quiet separators: `#CCC` or `#7B506B`
+- Vino TCA: `#762258`, primary actions and progress.
+- Vino ejecutivo: `#4B1638`, pressed and hover emphasis.
+- Ciruela institucional: `#5F294B`, borders and restrained brand detail.
+- Blanco humo: `#F8F8F8`, page and card surfaces.
+- Gris institucional: `#A7A5A6`, intermediate timer state.
+- Gris plata: `#D8D6D7`, quiet backgrounds and dividers.
+- Gris carbón: `#454545`, muted text.
+- Grafito: `#252525`, primary text.
+- Azul marino: `#18324A`, positive semantic text.
+- Azul acero: `#4F6D82`, safe timer state and cool accent.
 
-The five user-provided colors are mandatory for backgrounds, cards, controls, particles, and decorative states. Semantic success and danger colors may appear only with an icon or label and never replace the locked surface palette.
+The palette comes directly from the TCA chromatic reference supplied by the user. The page background remains a fixed Blanco humo to Gris plata gradient.
 
 ### Verified contrast pairs
 
-- Body text: `#111` on `#FCFCFC`, `#CCC`, or `#DDBED0`.
-- Filled controls: `#FCFCFC` on `#79215D` or `#7B506B`.
-- Burgundy labels: `#79215D` on `#CCC` or `#DDBED0`.
-- Plum/gray and rose/plum are limited to large UI shapes, borders, and decorative accents; never small body copy.
+- Text-safe: Grafito on Blanco humo, Gris plata or Gris institucional.
+- Text-safe fills: Blanco humo on Vino TCA, Vino ejecutivo, Ciruela institucional, Azul marino or Azul acero.
+- Text-safe accents: Vino TCA, Ciruela institucional and Azul marino on Gris plata.
+- Vino TCA on Gris institucional is limited to large UI shapes and state borders.
 
 ## Typography
 
@@ -36,11 +41,11 @@ The five user-provided colors are mandatory for backgrounds, cards, controls, pa
 - Question and answers are always separate surfaces.
 - Active game uses one centered white question card and a separate white answer card.
 - Primary button uses the primary fill; secondary button uses a white surface and border.
-- A fixed bottom HUD keeps the brand on the left and the countdown on the right.
-- The countdown background moves through green, yellow, and red at the remaining-time thirds.
+- A fixed mobile HUD keeps the score on the left and the countdown on the right.
+- The countdown shows only digits and changes from Azul acero to Gris institucional to Vino TCA at the remaining-time thirds.
 - Setup includes a persisted 2–5 minute stepper with 3 minutes as the default.
 - Correct and incorrect selections trigger a brief vector-face reaction.
-- Surrender always requires an explicit yes/no confirmation.
+- Surrender uses an icon-only floating exit button and always requires an explicit yes/no confirmation.
 - The page uses one fixed white gradient with no particles, grid, dotted overlay, or pointer reaction.
 - TCA identity uses the three-diamond reference supplied by the user as the favicon and as a restrained interface motif.
 - Code is separated from the prompt, manually indented, and never wrapped at arbitrary characters.
